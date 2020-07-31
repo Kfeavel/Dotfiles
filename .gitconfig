@@ -1,0 +1,21 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = Keeton T. Feavel
+	email = keetonfeavel@gmail.com
+	signingkey = 3256A5D6F927B936
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[commit]
+	gpsign = true
+	gpgsign = true
+[pull]
+	rebase = true
+[gpg]
+	program = /usr/local/bin/gpg
+[credential]
+	helper = osxkeychain
