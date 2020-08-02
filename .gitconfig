@@ -19,3 +19,6 @@
 	program = /usr/local/bin/gpg
 [credential]
 	helper = osxkeychain
+[alias]
+	co = checkout
+	s = status
