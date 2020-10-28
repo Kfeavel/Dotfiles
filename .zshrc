@@ -1,3 +1,8 @@
+# Check for tmux sessions and launch one if one doesn't exist
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#  tmux a -t default || exec tmux new -s default && exit;
+#fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/keeton/.oh-my-zsh
 
@@ -14,7 +19,7 @@ fortune | cowthink -f flaming-sheep | lolcat
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=7
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -27,6 +32,10 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias zshconfig="vim ~/.zshrc"
 alias gl="git log --graph --oneline --decorate"
+alias push="git push"
+alias pop="git stash pop"
+alias pull="git pull"
+alias stash="git stash"
 alias make="make -j8"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -35,10 +44,18 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/Applications/Panix/bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-14.0.1.jdk/Contents/Home"
 export GOPATH="$HOME/Library/Application Support/go/"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
 export GPG_TTY=$(tty)
+
+# Made history size massive
+HISTSIZE=99999
+HISTFILESIZE=999999
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Panix Compilation Flag Extras
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/Applications/Panix/lib
+export LD_FLAGS="-L$HOME/Applications/Panix/lib/gcc/i686-elf/10.2.0"
